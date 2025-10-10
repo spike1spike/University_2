@@ -3,18 +3,18 @@
 #include <cmath>
 #include <string>
 
-// Функция для отрисовки графика
+// Г”ГіГ­ГЄГ¶ГЁГї Г¤Г«Гї Г®ГІГ°ГЁГ±Г®ГўГЄГЁ ГЈГ°Г ГґГЁГЄГ 
 void drawGraph(sf::RenderWindow& window, std::function<float(float)> func, float xMin, float xMax, float scaleX, float scaleY, sf::Color color) {
     sf::VertexArray graph(sf::LinesStrip);
 
     for (float x = xMin; x <= xMax; x += 0.1f) {
-        float y = func(x); // Вычисление значения функции
+        float y = func(x); // Г‚Г»Г·ГЁГ±Г«ГҐГ­ГЁГҐ Г§Г­Г Г·ГҐГ­ГЁГї ГґГіГ­ГЄГ¶ГЁГЁ
 
-        // Преобразование координат в экранные
+        // ГЏГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ Гў ГЅГЄГ°Г Г­Г­Г»ГҐ
         float screenX = 400 + x * scaleX;
         float screenY = 300 - y * scaleY;
 
-        // Добавление точки в массив вершин
+        // Г„Г®ГЎГ ГўГ«ГҐГ­ГЁГҐ ГІГ®Г·ГЄГЁ Гў Г¬Г Г±Г±ГЁГў ГўГҐГ°ГёГЁГ­
         graph.append(sf::Vertex(sf::Vector2f(screenX, screenY), color));
     }
 
@@ -23,15 +23,15 @@ void drawGraph(sf::RenderWindow& window, std::function<float(float)> func, float
 
 int main() {
 
-    // Создание окна
-    sf::RenderWindow window(sf::VideoMode(800, 600), L"Приложение для вывода графиков");
+    // Г‘Г®Г§Г¤Г Г­ГЁГҐ Г®ГЄГ­Г 
+    sf::RenderWindow window(sf::VideoMode(800, 600), L"ГЏГ°ГЁГ«Г®Г¦ГҐГ­ГЁГҐ Г¤Г«Гї ГўГ»ГўГ®Г¤Г  ГЈГ°Г ГґГЁГЄГ®Гў");
 
-    // Переменная для хранения пользовательской точки
-    sf::CircleShape userPoint(5); // Радиус 5 пикселей
+    // ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г Гї Г¤Г«Гї ГµГ°Г Г­ГҐГ­ГЁГї ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГ®Г© ГІГ®Г·ГЄГЁ
+    sf::CircleShape userPoint(5); // ГђГ Г¤ГЁГіГ± 5 ГЇГЁГЄГ±ГҐГ«ГҐГ©
     userPoint.setFillColor(sf::Color::Red);
-    bool userPointExists = false; // Переменная для проверки существования пользовательской точки
+    bool userPointExists = false; // ГЏГҐГ°ГҐГ¬ГҐГ­Г­Г Гї Г¤Г«Гї ГЇГ°Г®ГўГҐГ°ГЄГЁ Г±ГіГ№ГҐГ±ГІГўГ®ГўГ Г­ГЁГї ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГ®Г© ГІГ®Г·ГЄГЁ
 
-    // 1 _ Загрузка шрифта (допишите код)
+    // 1 _ Г‡Г ГЈГ°ГіГ§ГЄГ  ГёГ°ГЁГґГІГ  (Г¤Г®ГЇГЁГёГЁГІГҐ ГЄГ®Г¤)
     // ...
     // ...
     // 
@@ -40,8 +40,8 @@ int main() {
         return -1;
     }
 
-    // 2 _ Текст для отображения координат точки (допишите код)
-    // Размер текста 20, положение текста (10,10), цвет белый. Текст храните в переменной coordinatesText
+    // 2 _ Г’ГҐГЄГ±ГІ Г¤Г«Гї Г®ГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГї ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ ГІГ®Г·ГЄГЁ (Г¤Г®ГЇГЁГёГЁГІГҐ ГЄГ®Г¤)
+    // ГђГ Г§Г¬ГҐГ° ГІГҐГЄГ±ГІГ  20, ГЇГ®Г«Г®Г¦ГҐГ­ГЁГҐ ГІГҐГЄГ±ГІГ  (10,10), Г¶ГўГҐГІ ГЎГҐГ«Г»Г©. Г’ГҐГЄГ±ГІ ГµГ°Г Г­ГЁГІГҐ Гў ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г®Г© coordinatesText
     // ...
     // ...
     //  
@@ -51,17 +51,17 @@ int main() {
     coordinatesText.setPosition(10, 10);
     coordinatesText.setFillColor(sf::Color::White);
 
-    // Оси X и Y
+    // ГЋГ±ГЁ X ГЁ Y
     sf::VertexArray xAxis(sf::Lines, 2);
-    xAxis[0].position = sf::Vector2f(50, 300); // Начало оси X
-    xAxis[0].color = sf::Color::White; // Цвет оси
-    xAxis[1].position = sf::Vector2f(750, 300); // Конец оси X
+    xAxis[0].position = sf::Vector2f(50, 300); // ГЌГ Г·Г Г«Г® Г®Г±ГЁ X
+    xAxis[0].color = sf::Color::White; // Г–ГўГҐГІ Г®Г±ГЁ
+    xAxis[1].position = sf::Vector2f(750, 300); // ГЉГ®Г­ГҐГ¶ Г®Г±ГЁ X
     xAxis[1].color = sf::Color::White;
 
     sf::VertexArray yAxis(sf::Lines, 2);
-    yAxis[0].position = sf::Vector2f(400, 50); // Начало оси Y
-    yAxis[0].color = sf::Color::White; // Цвет оси
-    yAxis[1].position = sf::Vector2f(400, 550); // Конец оси Y
+    yAxis[0].position = sf::Vector2f(400, 50); // ГЌГ Г·Г Г«Г® Г®Г±ГЁ Y
+    yAxis[0].color = sf::Color::White; // Г–ГўГҐГІ Г®Г±ГЁ
+    yAxis[1].position = sf::Vector2f(400, 550); // ГЉГ®Г­ГҐГ¶ Г®Г±ГЁ Y
     yAxis[1].color = sf::Color::White;
 
     while (window.isOpen()) {
@@ -70,21 +70,21 @@ int main() {
             if (event.type == sf::Event::Closed)
                 window.close();
 
-            // Проверка клика мышью
+            // ГЏГ°Г®ГўГҐГ°ГЄГ  ГЄГ«ГЁГЄГ  Г¬Г»ГёГјГѕ
             if (event.type == sf::Event::MouseButtonPressed) {
                 if (event.mouseButton.button == sf::Mouse::Left) {
-                    // Получение позиции клика
+                    // ГЏГ®Г«ГіГ·ГҐГ­ГЁГҐ ГЇГ®Г§ГЁГ¶ГЁГЁ ГЄГ«ГЁГЄГ 
                     sf::Vector2i mousePos = sf::Mouse::getPosition(window);
 
-                    // Преобразование экранных координат в "математические"
-                    float mathX = (mousePos.x - 400) / 25.0f; // Масштаб 30 по X
-                    float mathY = -(mousePos.y - 300) / 10.0f; // Масштаб 100 по Y
+                    // ГЏГ°ГҐГ®ГЎГ°Г Г§Г®ГўГ Г­ГЁГҐ ГЅГЄГ°Г Г­Г­Г»Гµ ГЄГ®Г®Г°Г¤ГЁГ­Г ГІ Гў "Г¬Г ГІГҐГ¬Г ГІГЁГ·ГҐГ±ГЄГЁГҐ"
+                    float mathX = (mousePos.x - 400) / 25.0f; // ГЊГ Г±ГёГІГ ГЎ 30 ГЇГ® X
+                    float mathY = -(mousePos.y - 300) / 10.0f; // ГЊГ Г±ГёГІГ ГЎ 100 ГЇГ® Y
 
-                    // Установка новой пользовательской точки
+                    // Г“Г±ГІГ Г­Г®ГўГЄГ  Г­Г®ГўГ®Г© ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГ®Г© ГІГ®Г·ГЄГЁ
                     userPoint.setPosition(mousePos.x - userPoint.getRadius(), mousePos.y - userPoint.getRadius());
-                    userPointExists = true; // Помечаем, что точка существует
+                    userPointExists = true; // ГЏГ®Г¬ГҐГ·Г ГҐГ¬, Г·ГІГ® ГІГ®Г·ГЄГ  Г±ГіГ№ГҐГ±ГІГўГіГҐГІ
 
-                    // 3 _ Допишите логику проверки точки по переменным mathX и mathY !
+                    // 3 _ Г„Г®ГЇГЁГёГЁГІГҐ Г«Г®ГЈГЁГЄГі ГЇГ°Г®ГўГҐГ°ГЄГЁ ГІГ®Г·ГЄГЁ ГЇГ® ГЇГҐГ°ГҐГ¬ГҐГ­Г­Г»Г¬ mathX ГЁ mathY !
                     // ...
                     // ...
                     //  
@@ -108,38 +108,38 @@ int main() {
                         area = "5";
                     }
 
-                    // Обновление текста с координатами точки 
+                    // ГЋГЎГ­Г®ГўГ«ГҐГ­ГЁГҐ ГІГҐГЄГ±ГІГ  Г± ГЄГ®Г®Г°Г¤ГЁГ­Г ГІГ Г¬ГЁ ГІГ®Г·ГЄГЁ 
                     coordinatesText.setString("Coordinates: (" + std::to_string(mathX) + ", " + std::to_string(mathY) + "); Area: " + area);
                 }
             }
         }
 
 
-        // 4 _ Очистка экрана (допишите код)
+        // 4 _ ГЋГ·ГЁГ±ГІГЄГ  ГЅГЄГ°Г Г­Г  (Г¤Г®ГЇГЁГёГЁГІГҐ ГЄГ®Г¤)
         // ...
         // 
         window.clear();
 
 
-        // Отрисовка осей
+        // ГЋГІГ°ГЁГ±Г®ГўГЄГ  Г®Г±ГҐГ©
         window.draw(xAxis);
         window.draw(yAxis);
 
 
 
-        // 5 _  Отрисовка графика y1 = 0.5*x (Замените на ваш график)
+        // 5 _  ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГЈГ°Г ГґГЁГЄГ  y1 = 0.5*x (Г‡Г Г¬ГҐГ­ГЁГІГҐ Г­Г  ГўГ Гё ГЈГ°Г ГґГЁГЄ)
         drawGraph(window, [](float x) { return x + 9; }, -10, 10, 25, 10, sf::Color::Red);
 
-        // 5 _   Отрисовка графика y2 = x * x - 5 (Замените на ваш график)
+        // 5 _   ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГЈГ°Г ГґГЁГЄГ  y2 = x * x - 5 (Г‡Г Г¬ГҐГ­ГЁГІГҐ Г­Г  ГўГ Гё ГЈГ°Г ГґГЁГЄ)
         drawGraph(window, [](float x) { return x * x; }, -10, 10, 25, 10, sf::Color::Blue);
 
-        // Отрисовка пользовательской точки, если она существует
+        // ГЋГІГ°ГЁГ±Г®ГўГЄГ  ГЇГ®Г«ГјГ§Г®ГўГ ГІГҐГ«ГјГ±ГЄГ®Г© ГІГ®Г·ГЄГЁ, ГҐГ±Г«ГЁ Г®Г­Г  Г±ГіГ№ГҐГ±ГІГўГіГҐГІ
         if (userPointExists) {
             window.draw(userPoint);
             window.draw(coordinatesText);
         }
 
-        // Отображение нового кадра
+        // ГЋГІГ®ГЎГ°Г Г¦ГҐГ­ГЁГҐ Г­Г®ГўГ®ГЈГ® ГЄГ Г¤Г°Г 
         window.display();
     }
 
